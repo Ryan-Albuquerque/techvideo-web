@@ -8,9 +8,9 @@ export default function Header(){
     return (
         <>
             <div className="flex justify-between px-16 pt-8 pb-4 border-b-2 border-purple-950 max-sm:p-4">
-                <h1 className="text-lg self-center">
-                    TechVideo.AI
-                </h1>   
+                <Link href={'/'} className="text-lg self-center">
+                    TechVideo.AI   
+                </Link>
                 <div className='flex items-center gap-4'>
                     <h6 className='text-muted-foreground text-sm max-sm:hidden'>Developed by ryan-albuquerque</h6>
                     <Separator orientation='vertical' className="h-6 max-sm:hidden"/>
