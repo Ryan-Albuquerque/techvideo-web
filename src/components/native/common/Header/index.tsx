@@ -4,7 +4,7 @@ import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
 
 
-export default function HomeHeader(){
+export default function Header(){
     return (
         <>
             <div className="flex justify-between px-16 pt-8 pb-4 border-b-2 border-purple-950 max-sm:p-4">

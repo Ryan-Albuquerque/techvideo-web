@@ -1,4 +1,4 @@
-import HomeHeader from "@/components/native/Home/Header";
+import HomeHeader from "@/components/native/common/Header";
 import HomeMainContent from "@/components/native/Home/MainContent";
 export default function Home() {
     
