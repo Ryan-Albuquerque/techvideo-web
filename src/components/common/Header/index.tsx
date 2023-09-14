@@ -14,10 +14,12 @@ export default function Header(){
                 <div className='flex items-center gap-4'>
                     <h6 className='text-muted-foreground text-sm max-sm:hidden'>Developed by ryan-albuquerque</h6>
                     <Separator orientation='vertical' className="h-6 max-sm:hidden"/>
-                    <Button variant="outline" >
-                        <Github className='w-4 h-4 mr-2'/>
-                        <Link href="https://www.github.com/ryan-albuquerque">Github</Link>
-                    </Button>
+                    <Link href="https://www.github.com/ryan-albuquerque" passHref legacyBehavior>
+                        <Button variant="outline" >
+                            <Github className='w-4 h-4 mr-2'/>
+                            Github
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </>

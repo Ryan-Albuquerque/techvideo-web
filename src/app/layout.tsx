@@ -1,4 +1,4 @@
-import Header from '@/components/native/common/Header'
+import Header from '@/components/common/Header'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -18,8 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className='dark'>
-      <Header/>
-      <body className={inter.className} suppressHydrationWarning={true}>{children}</body>
+      <body className={inter.className} suppressHydrationWarning={true}>
+        <Header/>
+        {children}
+      </body>
     </html>
   )
 }
