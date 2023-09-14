@@ -2,7 +2,9 @@
 export default function Creator() {
     return(
         <>
-            <h1>ola</h1>
+            <main>
+                
+            </main>
         </>
     )
 }

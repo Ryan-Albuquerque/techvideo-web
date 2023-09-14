@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Home() {
     return(
         <>
-            <div className="flex flex-col items-center mt-32">
+            <main className="flex flex-col items-center mt-32">
                 <div className="pb-32 max-sm:pb-24">
                     <h1 className="font-extrabold text-4xl max-md:text-3xl max-sm:text-2xl">
                         Welcome to
@@ -30,7 +30,7 @@ export default function Home() {
                         </Button>
                     </Link>
                 </div>
-            </div>
+            </main>
         </>
     )
 }

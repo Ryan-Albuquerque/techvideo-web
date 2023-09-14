@@ -7,7 +7,7 @@ import Link from 'next/link'
 export default function Header(){
     return (
         <>
-            <div className="flex justify-between px-16 pt-8 pb-4 border-b-2 border-purple-950 max-sm:p-4">
+            <header className="flex justify-between px-16 pt-8 pb-4 border-b-2 border-purple-950 max-sm:p-4">
                 <Link href={'/'} className="text-lg self-center">
                     TechVideo.AI   
                 </Link>
@@ -21,7 +21,7 @@ export default function Header(){
                         </Button>
                     </Link>
                 </div>
-            </div>
+            </header>
         </>
     )
-}2
+}
