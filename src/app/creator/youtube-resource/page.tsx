@@ -8,7 +8,7 @@ import { FileVideo, Upload, Wand2 } from "lucide-react"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem } from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
 
-export default function Creator() {
+export default function YoutubeResourceCreator() {
     return(
         <>
             <main className="flex-1 flex min-h-screen">

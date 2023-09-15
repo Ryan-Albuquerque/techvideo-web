@@ -17,13 +17,13 @@ export default function Home() {
                 </div>
 
                 <div className="flex justify-between h-96 w-1/2 gap-96 max-sm:gap-10 max-xl:gap-32 max-xl:w-4/6">
-                    <Link href={"/creator"} passHref legacyBehavior>
+                    <Link href={"/creator/hub"} passHref legacyBehavior>
                         <Button className="w-1/3 h-1/3 pt-2 bg-purple-950 flex flex-col hover:bg-purple-600 max-xl:3/4 max-lg:w-1/2 max-sm:h-1/4">
                             <Brain size={70} className="mb-6 mt-1 max-sm:mb-3"/>
                             CREATOR
                         </Button> 
                     </Link>
-                    <Link href={"/student"} passHref legacyBehavior>
+                    <Link href={"/student/hub"} passHref legacyBehavior>
                         <Button className="w-1/3 h-1/3 bg-purple-950 hover:bg-purple-500 flex flex-col max-xl:3/4 max-lg:w-1/2 max-sm:h-1/4">
                             <GraduationCap size={70} className="mb-6 mt-1 max-sm:mb-3"/>
                             STUDENT
