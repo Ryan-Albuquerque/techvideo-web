@@ -4,25 +4,16 @@ import { Youtube } from "lucide-react";
 import Link from "next/link";
 
 export default function CreatorHub() {
-
-    const handleDescriptionCard = (e: any) => {
-        e?.currentTarget?.children[1].classList.remove('hidden')
-    }
-
-    const unhandleDescriptionCard = (e: any) => {
-        e?.currentTarget?.children[1].classList.add('hidden')
-    }
-
     return (
         <>
             <main className="gap-16 grid grid-cols-6 max-md:grid-cols-2 max-xl:grid-cols-4 my-10 mx-16">
                 <Link href={"/creator/youtube-resource"} passHref legacyBehavior>
-                    <div className="relative"  onMouseEnter={handleDescriptionCard} onMouseOut={unhandleDescriptionCard}>
-                        <Button className="w-full h-full pt-2 shadow-lg shadow-purple-950 bg-purple-950 flex flex-col hover:opacity-10">
+                    <div className="relative group">
+                        <Button className="group-hover:opacity-20 w-full h-full pt-2 shadow-lg shadow-purple-950 bg-purple-950 flex flex-col">
                             <Youtube size={70} className="mb-6 mt-1 max-sm:h-1/3"/>
                             Youtube Creation
                         </Button> 
-                        <div className="absolute z-50 break-all top-0 text-center my-2 mx-4 text-xs hidden">
+                        <div className="group-hover:visible group-hover:opacity-100 absolute top-0 bottom-0 left-0 right-0 opacity-0 flex items-center justify-center flex-col py-5 text-xs font-bold transition-opacity ease-in duration-200 cursor-pointer">
                             <p>As a youtuber you can:</p>
                             <br/>
                             <ul>
