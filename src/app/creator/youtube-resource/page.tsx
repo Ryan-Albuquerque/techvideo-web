@@ -25,7 +25,7 @@ export default function YoutubeResourceCreator() {
                         />
                     </div>
                 </section>
-                <aside className="w-1/4 flex flex-col space-y-8 p-5">
+                <aside className="w-1/4 max-lg:w-1/3 max-sm:w-5/12 max-sm:px-2 flex flex-col space-y-8 p-5">
                     <form className='space-y-6 w-full'>
                         <label 
                             htmlFor="video"
