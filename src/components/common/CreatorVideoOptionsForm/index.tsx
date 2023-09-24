@@ -52,12 +52,12 @@ export default function CreatorVideoOptionsForm ({
     
     return (
         <>
-            <form className="space-y-8 w-full" onSubmit={handleSubmit}>
-                <Label htmlFor="type">
+            <form className="space-y-8 w-full max-md:space-y-4" onSubmit={handleSubmit}>
+                <Label htmlFor="type" className="max-md:text-xs">
                     Prompt
                 </Label>
 
-                <Select defaultValue="customize" onValueChange={(e: ChangeEvent<HTMLSelectElement>) => setGeneratorType(e)}>
+                <Select defaultValue="customize" onValueChange={(e: string) => setGeneratorType(e)}>
                     <SelectTrigger>
                         <SelectValue placeholder="Select a prompt" />
                     </SelectTrigger>
@@ -72,7 +72,7 @@ export default function CreatorVideoOptionsForm ({
                 </Select>
 
                 <div className="space-y-2">
-                    <Label>Model</Label>
+                    <Label className="max-md:text-xs">Model</Label>
                     <Select defaultValue='gpt3.5' disabled>
                         <SelectTrigger>
                         <SelectValue/>
@@ -88,7 +88,7 @@ export default function CreatorVideoOptionsForm ({
                 <Separator />
 
                 <div className="space-y-2">
-                    <Label>Criative Temper</Label>
+                    <Label className="max-md:text-xs">Criative Temper</Label>
                     <Slider 
                         min={0}
                         max={1}
