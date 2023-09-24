@@ -3,14 +3,14 @@
 import { Separator } from "@/components/ui/separator"
 import { useState } from "react"
 import CreatorVideoPromptSection from "@/components/common/CreatorVideoPromptSection"
-import {StatusUploadVideoEnum} from '@/utils/enum/StatusUploadVideoEnum'
+import {StatusToButtonEnum} from '@/utils/enum/StatusToButtonEnum'
 import CreatorVideoUploadForm from "@/components/common/CreatorVideoUploadForm"
 import CreatorVideoOptionsForm from "@/components/common/CreatorVideoOptionsForm"
 
 
 export default function YoutubeResourceCreator() {
     //status
-    const [uploadVideoStatus, setUploadVideoStatus] = useState<StatusUploadVideoEnum>(0)
+    const [uploadVideoStatus, setUploadVideoStatus] = useState<StatusToButtonEnum>(0)
 
     //video upload
     const [videoId, setVideoId] = useState<string>()
@@ -21,7 +21,7 @@ export default function YoutubeResourceCreator() {
     const [prompt, setPrompt] = useState<string>()
 
     //completion/result
-    const [completion, setCompletion] = useState<string>()
+    const [completion, setCompletion] = useState<string | undefined>()
     
     return(
         <>

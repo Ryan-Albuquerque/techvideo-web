@@ -1,4 +1,4 @@
-export enum  StatusUploadVideoEnum {
+export enum  StatusToButtonEnum {
     DISABLED,
     READ,
     LOADING,

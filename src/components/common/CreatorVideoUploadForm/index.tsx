@@ -4,14 +4,14 @@ import { Label } from "@/components/ui/label";
 import Icons from "../Icons";
 import { api } from "@/lib/api";
 import { ChangeEvent, FormEvent, useState } from "react";
-import {StatusUploadVideoEnum} from '@/utils/enum/StatusUploadVideoEnum'
+import {StatusToButtonEnum} from '@/utils/enum/StatusToButtonEnum'
 import ffmpegResource from "@/utils/resources/FFmpegResource";
 
 
 interface ICreatorVideoUploadForm {
     setId: Function,
     setUploadStatus: Function, 
-    uploadStatus: StatusUploadVideoEnum
+    uploadStatus: StatusToButtonEnum
 }
 
 export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadStatus}: ICreatorVideoUploadForm) {
@@ -28,7 +28,7 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
 
         files[0] && setVideoFile(URL.createObjectURL(files[0]))
         
-        setUploadStatus(StatusUploadVideoEnum.READ)
+        setUploadStatus(StatusToButtonEnum.READ)
     }
 
     const handleUploadVideo = async (event: FormEvent<HTMLFormElement>) => {
@@ -36,7 +36,7 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
             
             event.preventDefault();
     
-            setUploadStatus(StatusUploadVideoEnum.LOADING)
+            setUploadStatus(StatusToButtonEnum.LOADING)
             
             if(!videoFile) return
     
@@ -46,21 +46,24 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
     
             data.append('file', audioFile)
     
-            const response = await api.post('/videos', data)
+            const response = await api.post('/video', data)
+
+            console.log(response);
+            
     
-            const videoId = response.data.video.id
+            const videoId = response.data.id
     
-            await api.post(`/videos/${videoId}/transcription`, {
+            await api.post(`/video/${videoId}/transcription`, {
                 transcriptionPromptTextArea,
             })
             setId(videoId)
 
-            setUploadStatus(StatusUploadVideoEnum.DONE)
+            setUploadStatus(StatusToButtonEnum.DONE)
             
         } catch (error: any) {
             console.log(error?.message);
             
-            setUploadStatus(StatusUploadVideoEnum.READ)
+            setUploadStatus(StatusToButtonEnum.READ)
         }
     }
 
@@ -95,8 +98,8 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
                     />
                 </div>
 
-                <Button type='submit' className='w-full' disabled={uploadStatus == StatusUploadVideoEnum.DISABLED}>
-                    {uploadStatus !== StatusUploadVideoEnum.LOADING ? 
+                <Button type='submit' className='w-full' disabled={uploadStatus == StatusToButtonEnum.DISABLED}>
+                    {uploadStatus !== StatusToButtonEnum.LOADING ? 
                         <>
                             <Icons iconName="upload" addClass="w-4 h-4 mx-2" overrideClass /> 
                             Upload Video
