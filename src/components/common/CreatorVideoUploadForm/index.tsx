@@ -6,7 +6,6 @@ import { api } from "@/lib/api";
 import { ChangeEvent, FormEvent, useState } from "react";
 import {StatusUploadVideoEnum} from '@/utils/enum/StatusUploadVideoEnum'
 import ffmpegResource from "@/utils/resources/FFmpegResource";
-import { AxiosError } from "axios";
 
 
 interface ICreatorVideoUploadForm {
@@ -58,7 +57,7 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
 
             setUploadStatus(StatusUploadVideoEnum.DONE)
             
-        } catch (error) {
+        } catch (error: any) {
             console.log(error?.message);
             
             setUploadStatus(StatusUploadVideoEnum.READ)

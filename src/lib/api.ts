@@ -7,7 +7,7 @@ axios.interceptors.response.use(
     // don't get an unhandledrejection error. By throwing here, we
     // are handling the rejection, and bubbling up to the closest
     // error handler (try/catch or catch method call on a promise).
-    return Promise.reject(error);
+    throw new Error(error);
   }
 );
 export const api = axios.create({
