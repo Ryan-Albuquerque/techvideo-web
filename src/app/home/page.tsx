@@ -1,9 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button";
-import { Brain, GraduationCap } from 'lucide-react';
 import Typewriter from "@/components/common/TypeWriter";
-import Link from "next/link";
 import HubCard from "@/components/common/HubCard";
 
 export default function Home() {
