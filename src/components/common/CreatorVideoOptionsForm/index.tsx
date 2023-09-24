@@ -25,23 +25,29 @@ export default function CreatorVideoOptionsForm ({
     setGeneratorType,
     generatorType,
 } : ICreatorVideoOptionsForm) {
-    const [generationStatus, setGenerationStatus] = useState<StatusToButtonEnum>(0);
+    const [generationStatus, setGenerationStatus] = useState<StatusToButtonEnum>(StatusToButtonEnum.DISABLED);
 
     let temperature = 0.5;
     
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        setGenerationStatus(2)
-        event.preventDefault()        
-
-        const result = await api.post("/ai/content", {
-            videoId,
-            temperature,
-            generatorType,
-            promptValue
-        })     
-
-        getCompletion(result.data)
-        setGenerationStatus(3)
+        try {
+            setGenerationStatus(StatusToButtonEnum.LOADING)
+            event.preventDefault()        
+    
+            const result = await api.post("/ai/content", {
+                videoId,
+                temperature,
+                generatorType,
+                promptValue: promptValue + " {transcription}"
+            })     
+    
+            getCompletion(result.data)
+            setGenerationStatus(StatusToButtonEnum.DONE)
+        } catch (error: any) {
+            console.log(error?.message);
+            
+            setGenerationStatus(StatusToButtonEnum.READ)
+        }
     }
     
     return (

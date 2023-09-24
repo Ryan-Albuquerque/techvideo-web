@@ -32,8 +32,7 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
     }
 
     const handleUploadVideo = async (event: FormEvent<HTMLFormElement>) => {
-        try {
-            
+        try {            
             event.preventDefault();
     
             setUploadStatus(StatusToButtonEnum.LOADING)
@@ -46,10 +45,7 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
     
             data.append('file', audioFile)
     
-            const response = await api.post('/video', data)
-
-            console.log(response);
-            
+            const response = await api.post('/video', data)            
     
             const videoId = response.data.id
     
@@ -82,7 +78,7 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
                             Upload a video 
                         </> ) : (
                         <>
-                            <video src={videoFile} className="aspect-video"/>
+                            <video src={videoFile} className="aspect-video h-full"/>
                         </>
                     )}
                 </Label>

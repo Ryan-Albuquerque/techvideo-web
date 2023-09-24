@@ -16,7 +16,7 @@ export default function CreatorVideoPromptSection ({setPromptValue, videoPromptO
             <section className="flex flex-col flex-1 gap-4">
                 <div className="flex flex-col gap-4 p-5 flex-1">
                     <Textarea
-                        placeholder="Add Prompt command."
+                        placeholder={"Add Prompt command." + "\n" + "Egg.: What is the more significant word mentioned in the video?"}
                         className="resize-none h-1/2 leading-relaxed"
                         onBlur={handlePromptValue}
                         readOnly={videoPromptOptions !== 'customize'}
