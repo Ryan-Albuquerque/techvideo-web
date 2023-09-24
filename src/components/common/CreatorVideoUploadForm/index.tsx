@@ -6,6 +6,7 @@ import { api } from "@/lib/api";
 import { ChangeEvent, FormEvent, useState } from "react";
 import {StatusUploadVideoEnum} from '@/utils/enum/StatusUploadVideoEnum'
 import ffmpegResource from "@/utils/resources/FFmpegResource";
+import { AxiosError } from "axios";
 
 
 interface ICreatorVideoUploadForm {
@@ -32,31 +33,35 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
     }
 
     const handleUploadVideo = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        setUploadStatus(StatusUploadVideoEnum.LOADING)
-        
-        if(!videoFile) return
-
-        const audioFile = await ffmpegResource.convertVideoToAudio(videoFile)
-
-        const data = new FormData()
-
-        data.append('file', audioFile)
-
-        const response = await api.post('/videos', data)
-
-        const videoId = response.data.video.id
-
         try {
+            
+            event.preventDefault();
+    
+            setUploadStatus(StatusUploadVideoEnum.LOADING)
+            
+            if(!videoFile) return
+    
+            const audioFile = await ffmpegResource.convertVideoToAudio(videoFile)
+    
+            const data = new FormData()
+    
+            data.append('file', audioFile)
+    
+            const response = await api.post('/videos', data)
+    
+            const videoId = response.data.video.id
+    
             await api.post(`/videos/${videoId}/transcription`, {
                 transcriptionPromptTextArea,
             })
             setId(videoId)
 
             setUploadStatus(StatusUploadVideoEnum.DONE)
+            
         } catch (error) {
-            setUploadStatus(StatusUploadVideoEnum.DISABLED)
+            console.log(error?.message);
+            
+            setUploadStatus(StatusUploadVideoEnum.READ)
         }
     }
 
