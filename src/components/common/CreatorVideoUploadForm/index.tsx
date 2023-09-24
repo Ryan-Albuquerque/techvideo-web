@@ -75,7 +75,7 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
                             Upload a video 
                         </> ) : (
                         <>
-                            <video src={videoFile} className="flex-1"/>
+                            <video src={videoFile} className="aspect-video"/>
                         </>
                     )}
                 </Label>
