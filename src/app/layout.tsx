@@ -2,17 +2,10 @@
 
 import Header from '@/components/common/Header'
 import './globals.css'
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import ThemeAppProvider from '../components/providers/theme-provider'
 
 const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'TechVideo.AI',
-  description: 'Optimize people time with medias using AI ',
-  icons: ['./icon.svg']
-}
 
 export default function RootLayout({
   children,
@@ -22,6 +15,10 @@ export default function RootLayout({
   return (
     <>
         <html lang="en" className='dark'>
+          <head>
+            <title>TechVideo.AI</title>
+            <meta name="description" content="Optimize people time with medias using AI" />
+          </head>
           <body className={inter.className} suppressHydrationWarning={true}>
             <ThemeAppProvider>
               <Header/>
