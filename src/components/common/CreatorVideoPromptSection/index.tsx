@@ -7,7 +7,7 @@ interface ICreatorVideoSection {
 }
 
 export default function CreatorVideoPromptSection ({setPromptValue, videoPromptOptions, completionValue} : ICreatorVideoSection) {
-    const handlePromptValue = (e: React.FocusEvent<HTMLElement>) => {
+    const handlePromptValue = (e: React.FocusEvent<HTMLTextAreaElement>) => {
         setPromptValue(e?.target?.value)
     }
     
