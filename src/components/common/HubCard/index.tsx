@@ -21,21 +21,25 @@ export default function HubCard ({linkTo, icon, name, bodyDescription, footerDes
                             <Icons iconName={icon}/>
                             {name}
                         </Button> 
-                        {hasHoverContent && <div className="group-hover:visible group-hover:opacity-100 absolute top-0 bottom-0 left-0 right-0 opacity-0 flex items-center justify-center flex-col py-5 text-xs font-bold transition-opacity ease-in duration-200 cursor-pointer">
-                            <p>As {name} you can:</p>
-                            <br/>
-                            <ul>
-                                {
-                                    bodyDescription?.split("-")?.map(
-                                        (desc: string, i : number) =>{ 
-                                            return <li key={i}>&#8226; {desc}</li>
-                                        }
-                                    )
-                                }
-                            </ul>
-                            <br/>  
-                            <p>{footerDescription}</p>
-                        </div>}
+                        {hasHoverContent && 
+                        <>
+                            <div className="group-hover:visible group-hover:opacity-100 absolute top-0 bottom-0 left-0 right-0 opacity-0 flex items-center justify-center flex-col py-5 text-xs font-bold transition-opacity ease-in duration-200 cursor-pointer">
+                                <p>As {name} you can:</p>
+                                <br/>
+                                <ul>
+                                    {
+                                        bodyDescription?.split("-")?.map(
+                                            (desc: string, i : number) =>{ 
+                                                return <li key={i}>&#8226; {desc}</li>
+                                            }
+                                        )
+                                    }
+                                </ul>
+                                <br/>  
+                                <p>{footerDescription}</p>
+                            </div>
+                        </>
+                        }
                         
                     </div>
                 </Link>
