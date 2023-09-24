@@ -1,12 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@radix-ui/react-label";
+import { Label } from "@/components/ui/label";
 import Icons from "../Icons";
 import { api } from "@/lib/api";
 import { ChangeEvent, FormEvent, useState } from "react";
 import {StatusUploadVideoEnum} from '@/utils/enum/StatusUploadVideoEnum'
-import { FFmpeg } from "@ffmpeg/ffmpeg";
-import { toBlobURL, fetchFile } from "@ffmpeg/util";
+import ffmpegResource from "@/utils/resources/FFmpegResource";
 
 
 interface ICreatorVideoUploadForm {
@@ -39,7 +38,7 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
         
         if(!videoFile) return
 
-        const audioFile = await convertVideoToAudio(videoFile)
+        const audioFile = await ffmpegResource.convertVideoToAudio(videoFile)
 
         const data = new FormData()
 
@@ -49,46 +48,16 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
 
         const videoId = response.data.video.id
 
-        await api.post(`/videos/${videoId}/transcription`, {
-            transcriptionPromptTextArea,
-        })
+        try {
+            await api.post(`/videos/${videoId}/transcription`, {
+                transcriptionPromptTextArea,
+            })
+            setId(videoId)
 
-        setId(videoId)
-
-        setUploadStatus(StatusUploadVideoEnum.DONE)
-    }
-    
-    const convertVideoToAudio = async (videoFile: string) => {
-        const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.2/dist/umd'
-        const ffmpeg = new FFmpeg()
-        await ffmpeg.load({
-            coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-            wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-        });
-        await ffmpeg.writeFile('input.mp4', await fetchFile(videoFile))
-        
-        
-        ffmpeg.on('progress', progress => {
-            console.log('Convert progress: ' + Math.round(progress.progress * 100))
-        })
-    
-        await ffmpeg.exec([
-            '-i',
-            'input.mp4',
-            'output.mp3'
-        ])
-
-
-        const data = await ffmpeg.readFile('output.mp3')
-
-        const audioFileBlob = new Blob([data], { type: 'audio/mp3' })
-        const audioFile = new File([audioFileBlob], 'output.mp3', {
-          type: 'audio/mpeg'
-        })
-    
-        console.log('Convert finished.')
-    
-        return audioFile
+            setUploadStatus(StatusUploadVideoEnum.DONE)
+        } catch (error) {
+            setUploadStatus(StatusUploadVideoEnum.DISABLED)
+        }
     }
 
     
@@ -96,7 +65,7 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
         <>
             <form className='w-full space-y-6' onSubmit={handleUploadVideo}>
                 <p className="text-center mt-2 max-lg:text-xs">First of all upload your video to generate a transcription, after generate your AI content</p>
-                <label 
+                <Label 
                     htmlFor="video"
                     className='border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/5 my-4'
                 >
@@ -109,7 +78,7 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
                             <video src={videoFile} className="flex-1"/>
                         </>
                     )}
-                </label>
+                </Label>
                 <input type="file" id="video" accept='video/mp4' className='sr-only' onChange={handleFileSelected}/>
 
                 <div className="space-y-2">
