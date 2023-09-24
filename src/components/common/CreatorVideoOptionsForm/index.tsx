@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { api } from "@/lib/api"
 import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem } from "@/components/ui/select"
-import { FormEvent, useState } from "react"
+import { ChangeEvent, FormEvent, useState } from "react"
 import Icons from "../Icons"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
@@ -51,7 +51,7 @@ export default function CreatorVideoOptionsForm ({
                     Prompt
                 </Label>
 
-                <Select defaultValue="customize" onValueChange={(e) => setGeneratorType(e)}>
+                <Select defaultValue="customize" onValueChange={(e: ChangeEvent<HTMLSelectElement>) => setGeneratorType(e)}>
                     <SelectTrigger>
                         <SelectValue placeholder="Select a prompt" />
                     </SelectTrigger>
