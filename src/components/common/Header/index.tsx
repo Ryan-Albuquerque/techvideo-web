@@ -1,6 +1,5 @@
 "use client"
 
-import { Github } from 'lucide-react' 
 import { Button } from "@/components/ui/button"
 import { Separator } from '@/components/ui/separator'
 import Link from 'next/link'
@@ -26,7 +25,7 @@ export default function Header(){
                     <Separator orientation='vertical' className="h-6 max-sm:hidden"/>
                     <Link href="https://www.github.com/ryan-albuquerque" passHref legacyBehavior>
                         <Button variant="outline" >
-                            <Github className='w-4 h-4 mr-2'/>
+                            <Icons iconName="github" overrideClass addClass='w-4 h-4 mr-2'/>
                             Github
                         </Button>
                     </Link>
