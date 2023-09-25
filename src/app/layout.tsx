@@ -5,6 +5,10 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import ThemeAppProvider from '../components/providers/theme-provider'
 
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
@@ -23,6 +27,18 @@ export default function RootLayout({
             <ThemeAppProvider>
               <Header/>
               {children}
+              <ToastContainer
+                position="top-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+              />
             </ThemeAppProvider>
           </body>
         </html>

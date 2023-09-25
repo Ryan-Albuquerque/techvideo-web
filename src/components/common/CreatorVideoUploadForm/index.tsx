@@ -4,8 +4,10 @@ import { Label } from "@/components/ui/label";
 import Icons from "../Icons";
 import { api } from "@/lib/api";
 import { ChangeEvent, FormEvent, useState } from "react";
-import {StatusToButtonEnum} from '@/utils/enum/StatusToButtonEnum'
 import ffmpegResource from "@/utils/resources/FFmpegResource";
+import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum";
+import { NotificationTypeEnum } from "@/utils/enum/NotificationTypeEnum";
+import Notification from "@/utils/notification";
 
 
 interface ICreatorVideoUploadForm {
@@ -55,11 +57,14 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
             setId(videoId)
 
             setUploadStatus(StatusToButtonEnum.DONE)
+
+            Notification(NotificationTypeEnum.success, 'Video uploaded, now you can select your prompt generation type!')
             
         } catch (error: any) {
             console.log(error?.message);
             
             setUploadStatus(StatusToButtonEnum.READ)
+            Notification(NotificationTypeEnum.error, `Something wrong - ${error.message}`)
         }
     }
 
@@ -89,7 +94,7 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
                     <Textarea 
                         id='transcription_prompt' 
                         className='h-20 leading-relaxed resize-none max-md:text-xs'
-                        placeholder='Add keyworks mencioned in video diving per common (,)'
+                        placeholder='Add keywords mencioned in video separating per common (,)'
                         onChange={(e) => setTranscriptionPromptTextArea(e.target.value)}
                     />
                 </div>

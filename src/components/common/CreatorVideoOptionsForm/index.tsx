@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button"
 import { api } from "@/lib/api"
-import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem } from "@/components/ui/select"
-import { ChangeEvent, FormEvent, useState } from "react"
+import { FormEvent, useState } from "react"
 import Icons from "../Icons"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Slider } from "@/components/ui/slider"
+import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum"
+import Notification from "@/utils/notification"
+import { NotificationTypeEnum } from "@/utils/enum/NotificationTypeEnum"
 
 interface ICreatorVideoOptionsForm {
     videoId: string | undefined,
@@ -43,10 +45,13 @@ export default function CreatorVideoOptionsForm ({
     
             getCompletion(result.data)
             setGenerationStatus(StatusToButtonEnum.DONE)
+
+            Notification(NotificationTypeEnum.success, 'Content Generated!')
         } catch (error: any) {
             console.log(error?.message);
             
             setGenerationStatus(StatusToButtonEnum.READ)
+            Notification(NotificationTypeEnum.error, `Something wrong - ${error.message}`)
         }
     }
     
@@ -54,19 +59,19 @@ export default function CreatorVideoOptionsForm ({
         <>
             <form className="space-y-8 w-full max-md:space-y-4" onSubmit={handleSubmit}>
                 <Label htmlFor="type" className="max-md:text-xs">
-                    Prompt
+                    Prompt Generation Type
                 </Label>
 
-                <Select defaultValue="customize" onValueChange={(e: string) => setGeneratorType(e)}>
+                <Select defaultValue="video_description" onValueChange={(e: string) => setGeneratorType(e)}>
                     <SelectTrigger>
                         <SelectValue placeholder="Select a prompt" />
                     </SelectTrigger>
                     <SelectContent >
                         <SelectGroup>
-                            <SelectItem value="customize">Custom Prompt</SelectItem>
                             <SelectItem value="video_description">Video Description</SelectItem>
                             <SelectItem value="video_title">Video Title</SelectItem>
                             <SelectItem value="video_summary">Video Summary</SelectItem>
+                            <SelectItem value="customize">Custom Prompt</SelectItem>
                         </SelectGroup>
                     </SelectContent>
                 </Select>

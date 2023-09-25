@@ -16,7 +16,7 @@ export default function YoutubeResourceCreator() {
     const [videoId, setVideoId] = useState<string>()
     
     //media generator
-    const [videoPrompt, setVideoPrompt] = useState<string>('customize')
+    const [videoPrompt, setVideoPrompt] = useState<string>('video_description')
 
     const [prompt, setPrompt] = useState<string>()
 

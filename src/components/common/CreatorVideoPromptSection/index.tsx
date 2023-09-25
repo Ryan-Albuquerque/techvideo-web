@@ -2,14 +2,14 @@ import { Textarea } from "@/components/ui/textarea";
 
 interface ICreatorVideoSection {
     setPromptValue: Function, 
-    videoPromptOptions: string | undefined,
+    videoPromptOptions: string,
     completionValue: string | undefined
 }
 
 export default function CreatorVideoPromptSection ({setPromptValue, videoPromptOptions, completionValue} : ICreatorVideoSection) {
     const handlePromptValue = (e: React.FocusEvent<HTMLTextAreaElement>) => {
         setPromptValue(e?.target?.value)
-    }
+    }    
     
     return (
         <>
