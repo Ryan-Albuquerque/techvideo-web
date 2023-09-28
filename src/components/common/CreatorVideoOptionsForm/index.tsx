@@ -51,7 +51,7 @@ export default function CreatorVideoOptionsForm ({
             console.log(error?.message);
             
             setGenerationStatus(StatusToButtonEnum.READ)
-            Notification(NotificationTypeEnum.error, `Something wrong - ${error.message}`)
+            Notification(NotificationTypeEnum.error, `Something wrong - ${error?.response?.data?.error ?? error?.message}`)
         }
     }
     

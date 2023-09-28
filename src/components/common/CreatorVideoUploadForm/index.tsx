@@ -60,11 +60,9 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
 
             Notification(NotificationTypeEnum.success, 'Video uploaded, now you can select your prompt generation type!')
             
-        } catch (error: any) {
-            console.log(error?.message);
-            
+        } catch (error: any) {           
             setUploadStatus(StatusToButtonEnum.READ)
-            Notification(NotificationTypeEnum.error, `Something wrong - ${error.message}`)
+            Notification(NotificationTypeEnum.error, `Something wrong - ${error?.response?.data?.error ?? error?.message}`)
         }
     }
 
