@@ -10,6 +10,7 @@ axios.interceptors.response.use(
     throw new Error(error);
   }
 );
+
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
