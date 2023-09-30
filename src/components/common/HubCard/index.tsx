@@ -6,13 +6,14 @@ interface IHubCard {
     linkTo: string, 
     icon: string,
     name: string, 
+    headerDescription?: string,
     bodyDescription?: string
     footerDescription?: string
     hasHoverContent: boolean
 }
 
 
-export default function HubCard ({linkTo, icon, name, bodyDescription, footerDescription, hasHoverContent = false} : IHubCard) {    
+export default function HubCard ({linkTo, icon, name, headerDescription, bodyDescription, footerDescription, hasHoverContent = false} : IHubCard) {    
     return(
         <>
             <Link href={linkTo} passHref legacyBehavior>
@@ -24,7 +25,7 @@ export default function HubCard ({linkTo, icon, name, bodyDescription, footerDes
                         {hasHoverContent && 
                         <>
                             <div className="group-hover:visible group-hover:opacity-100 absolute top-0 bottom-0 left-0 right-0 opacity-0 flex items-center justify-center flex-col py-5 text-xs font-bold transition-opacity ease-in duration-200 cursor-pointer">
-                                <p>As {name} you can:</p>
+                                <p>{headerDescription ? headerDescription : `As ${name} you can:` }</p>
                                 <br/>
                                 <ul>
                                     {
