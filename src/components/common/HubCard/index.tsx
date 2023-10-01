@@ -24,9 +24,8 @@ export default function HubCard ({linkTo, icon, name, headerDescription, bodyDes
                         </Button> 
                         {hasHoverContent && 
                         <>
-                            <div className="group-hover:visible group-hover:opacity-100 absolute top-0 bottom-0 left-0 right-0 opacity-0 flex my-2 flex-col text-[10px] text-center font-bold transition-opacity ease-in duration-200 cursor-pointer">
+                            <div className="group-hover:visible group-hover:opacity-100 absolute top-0 bottom-0 left-0 right-0 opacity-0 flex my-2 flex-col justify-around h-5/6 text-sm max-lg:text-[10px] text-center font-bold transition-opacity ease-in duration-200 cursor-pointer">
                                 <p>{headerDescription ? headerDescription : `As ${name} you can:` }</p>
-                                <br/>
                                 <ul className="mx-2">
                                     {
                                         bodyDescription?.split("-")?.map(
@@ -36,7 +35,6 @@ export default function HubCard ({linkTo, icon, name, headerDescription, bodyDes
                                         )
                                     }
                                 </ul>
-                                <br/>  
                                 <p>{footerDescription}</p>
                             </div>
                         </>
