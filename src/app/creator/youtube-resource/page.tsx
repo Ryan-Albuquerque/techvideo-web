@@ -25,13 +25,13 @@ export default function YoutubeResourceCreator() {
     
     return(
         <>
-            <main className="flex-1 flex min-h-screen">
-                <CreatorVideoPromptSection completionValue={completion} setPromptValue={setPrompt} videoPromptOptions={videoPrompt}/>
-                <aside className="w-1/4 max-lg:w-1/3 max-sm:w-2/5 max-sm:px-2 flex flex-col space-y-8 p-5">
+            <main className="flex-1 flex min-h-screen max-sm:flex-col">
+                <aside className="w-1/3 max-lg:w-2/5 max-sm:w-full max-sm:px-2 flex flex-col space-y-8 p-5">
                     <CreatorVideoUploadForm setId={setVideoId} setUploadStatus={setUploadVideoStatus} uploadStatus={uploadVideoStatus} />
                     <Separator/>
                     <CreatorVideoOptionsForm videoId={videoId} promptValue={prompt} uploadStatus={uploadVideoStatus} getCompletion={setCompletion} generatorType={videoPrompt} setGeneratorType={setVideoPrompt} />
                 </aside>
+                <CreatorVideoPromptSection completionValue={completion} setPromptValue={setPrompt} videoPromptOptions={videoPrompt}/>
             </main>
         </>
     )

@@ -24,10 +24,10 @@ export default function HubCard ({linkTo, icon, name, headerDescription, bodyDes
                         </Button> 
                         {hasHoverContent && 
                         <>
-                            <div className="group-hover:visible group-hover:opacity-100 absolute top-0 bottom-0 left-0 right-0 opacity-0 flex items-center justify-center flex-col py-5 text-xs font-bold transition-opacity ease-in duration-200 cursor-pointer">
+                            <div className="group-hover:visible group-hover:opacity-100 absolute top-0 bottom-0 left-0 right-0 opacity-0 flex my-2 flex-col text-[10px] text-center font-bold transition-opacity ease-in duration-200 cursor-pointer">
                                 <p>{headerDescription ? headerDescription : `As ${name} you can:` }</p>
                                 <br/>
-                                <ul>
+                                <ul className="mx-2">
                                     {
                                         bodyDescription?.split("-")?.map(
                                             (desc: string, i : number) =>{ 

@@ -80,7 +80,7 @@ export default function GenerateByVideo() {
             <main className="flex-1 flex min-h-screen max-sm:flex-col">
                 <div className="flex flex-col flex-1 gap-4 max-sm:flex-none space-y-8 p-5">
                     <form className="flex flex-col gap-4 p-5 flex-1 max-md:p-1 max-md:pt-5" onSubmit={handleUploadVideo}>
-                        <Label>Upload your video, choose you content type and generate your AI content</Label>
+                        <Label>Upload your video, choose your content type and generate your content.</Label>
                         <Label 
                             htmlFor="video"
                             className='max-sm:aspect-square max-sm:h-1/6 border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/5 my-4 h-2/6'
@@ -98,7 +98,7 @@ export default function GenerateByVideo() {
                         <input type="file" id="video" accept='video/mp4' className='sr-only' onChange={handleFileSelected}/>
 
                         <div className="space-y-2 mb-4">
-                            <Label className="max-md:text-xs">Criative Temper</Label>
+                            <Label className="max-md:text-xs">Criative Temperature</Label>
                             <Slider 
                                 min={0}
                                 max={1}

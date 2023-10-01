@@ -70,10 +70,10 @@ export default function CreatorVideoUploadForm({setId, setUploadStatus, uploadSt
     return (
         <>
             <form className='w-full space-y-6' onSubmit={handleUploadVideo}>
-                <p className="text-center mt-2 max-lg:text-xs max-md:mt-0">First of all upload your video to generate a transcription, after generate your AI content</p>
+                <p className="text-center mt-2 max-lg:text-sm max-md:mt-0 font-bold">First of all upload your video to generate a transcription, after generate your AI content</p>
                 <Label 
                     htmlFor="video"
-                    className='max-sm:aspect-square border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/5 my-4'
+                    className='max-sm:aspect-video border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/5 my-4'
                 >
                     {!videoFile ? (
                         <>

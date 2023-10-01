@@ -10,15 +10,15 @@ export default function Home() {
                 <div className="pb-12 max-sm:pb-6">
                     <h1 className="font-extrabold text-4xl max-md:text-3xl max-sm:text-2xl text-center">
                         Welcome to
-                        <Typewriter text=" TechVideo.AI" infinite delay={150}/>
+                        <Typewriter text=" TechVideo.AI" infinite delay={170}/>
                     </h1>
 
-                    <p className="mt-6 text-center"><Typewriter text="A web app to assist you with your media using AI" delay={150}/></p>
+                    <p className="mt-6 text-center"><Typewriter text="A web app to help you with what you need using AI" delay={100}/></p>
                 </div>
 
                 <div className="gap-20 grid grid-cols-2 w-1/3 max-xl:w-1/2 max-sm:w-full max-md:px-10 my-10 mx-16">
-                    <HubCard icon="graduation-cap" linkTo="/student/hub" name="STUDENT" hasHoverContent={false} />
-                    <HubCard icon="brain" linkTo="/creator/hub" name="CREATOR" hasHoverContent={false} />
+                    <HubCard icon="graduation-cap" linkTo="/student/hub" name="STUDENT" hasHoverContent bodyDescription="Generate content from video-Ask anything" footerDescription="Using AI to help you"/>
+                    <HubCard icon="brain" linkTo="/creator/hub" name="CREATOR" hasHoverContent bodyDescription="Generate content from video" footerDescription="Perfect to Youtube creators" />
                 </div>
             </main>
         </>
