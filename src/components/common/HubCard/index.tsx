@@ -18,7 +18,7 @@ export default function HubCard ({linkTo, icon, name, headerDescription, bodyDes
         <>
             <Link href={linkTo} passHref legacyBehavior>
                     <div className="relative group">
-                        <Button className="group-hover:opacity-20 w-full h-full pt-2 shadow-lg shadow-purple-950 bg-purple-950 flex flex-col">
+                        <Button className="group-hover:opacity-20 max-sm:h-5/6 w-full h-full pt-2 shadow-lg shadow-purple-950 bg-purple-950 flex flex-col">
                             <Icons iconName={icon}/>
                             {name}
                         </Button> 
