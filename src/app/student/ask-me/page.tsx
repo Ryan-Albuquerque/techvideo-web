@@ -53,7 +53,7 @@ export default function AskMe() {
                     />
                     <div className="flex justify-between items-center">
                         <div className="flex flex-col basis-3/4 space-y-2 gap-3">
-                            <Label className="max-md:text-xs">Criative Temper</Label>
+                            <Label className="max-md:text-xs">Criative Temperature</Label>
                             <Slider 
                                 min={0}
                                 max={1}

@@ -93,7 +93,7 @@ export default function CreatorVideoOptionsForm ({
                 <Separator />
 
                 <div className="space-y-2">
-                    <Label className="max-md:text-xs">Criative Temper</Label>
+                    <Label className="max-md:text-xs">Criative Temperature</Label>
                     <Slider 
                         min={0}
                         max={1}
