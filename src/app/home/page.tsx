@@ -17,8 +17,8 @@ export default function Home() {
                 </div>
 
                 <div className="gap-20 grid grid-cols-2 w-1/3 max-xl:w-1/2 max-sm:w-full max-md:px-10 my-10 mx-16">
-                    <HubCard icon="brain" linkTo="/creator/hub" name="CREATOR" hasHoverContent={false} />
                     <HubCard icon="graduation-cap" linkTo="/student/hub" name="STUDENT" hasHoverContent={false} />
+                    <HubCard icon="brain" linkTo="/creator/hub" name="CREATOR" hasHoverContent={false} />
                 </div>
             </main>
         </>
