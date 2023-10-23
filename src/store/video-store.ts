@@ -10,7 +10,7 @@ interface VideoData {
   uploadName?: string;
 }
 interface VideoState {
-  video: VideoData | {};
+  video: VideoData | null;
   frontFile: string | null;
   uploadStatus: StatusToButtonEnum;
   generatorType: string;
@@ -35,7 +35,7 @@ interface creatorVideoStore {
 
 export const creatorVideoStore = create<creatorVideoStore>((set) => ({
   state: {
-    video: {},
+    video: null,
     frontFile: null,
     uploadStatus: StatusToButtonEnum.DISABLED,
     completion: null,

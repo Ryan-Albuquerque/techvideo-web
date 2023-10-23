@@ -37,7 +37,7 @@ export default function CreatorVideoOptionsForm() {
       event.preventDefault();
 
       const aiContentResult = await startTask("/ai/content", {
-        videoId: video.id,
+        videoId: video?.id,
         temperature,
         generatorType,
         promptValue: prompt + " {transcription}",
