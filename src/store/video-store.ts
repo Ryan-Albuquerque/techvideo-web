@@ -9,30 +9,38 @@ interface VideoData {
   createdAt?: string;
   uploadName?: string;
 }
-
 interface VideoState {
   video: VideoData | {};
   frontFile: string | null;
   uploadStatus: StatusToButtonEnum;
+  generatorType: string;
+  prompt: string | null;
+  completion: string | null;
 }
 
 interface VideoActions {
   setVideo: (data: VideoData) => void;
   removeVideo: () => void;
   setTranscription: (transcription: string) => void;
+  setCompletion: (completion: string) => void;
+  setGeneratorType: (generatorType: string) => void;
+  setPrompt: (prompt: string) => void;
   setVideoFile: (fileName: string) => void;
   setUploadStatus: (status: StatusToButtonEnum) => void;
 }
-interface VideoStore {
+interface creatorVideoStore {
   state: VideoState;
   actions: VideoActions;
 }
 
-export const videoStore = create<VideoStore>((set) => ({
+export const creatorVideoStore = create<creatorVideoStore>((set) => ({
   state: {
     video: {},
     frontFile: null,
     uploadStatus: StatusToButtonEnum.DISABLED,
+    completion: null,
+    generatorType: "video_description",
+    prompt: null,
   },
   actions: {
     setVideo: (data) =>
@@ -54,6 +62,27 @@ export const videoStore = create<VideoStore>((set) => ({
         state: {
           ...state.state,
           video: { ...state.state.video, transcription },
+        },
+      })),
+    setCompletion: (completion) =>
+      set((state) => ({
+        state: {
+          ...state.state,
+          completion,
+        },
+      })),
+    setGeneratorType: (generatorType) =>
+      set((state) => ({
+        state: {
+          ...state.state,
+          generatorType,
+        },
+      })),
+    setPrompt: (prompt) =>
+      set((state) => ({
+        state: {
+          ...state.state,
+          prompt,
         },
       })),
     setVideoFile: (fileName) =>

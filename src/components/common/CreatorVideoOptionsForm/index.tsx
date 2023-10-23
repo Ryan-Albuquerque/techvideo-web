@@ -1,5 +1,5 @@
+"use client";
 import { Button } from "@/components/ui/button";
-import { api } from "@/lib/api";
 import {
   Select,
   SelectTrigger,
@@ -16,27 +16,18 @@ import { Slider } from "@/components/ui/slider";
 import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum";
 import Notification from "@/utils/notification";
 import { NotificationTypeEnum } from "@/utils/enum/NotificationTypeEnum";
+import { startTask } from "@/lib/taskProcess";
+import { creatorVideoStore } from "@/store/video-store";
 
-interface ICreatorVideoOptionsForm {
-  videoId: string | undefined;
-  promptValue: string | undefined;
-  uploadStatus: StatusToButtonEnum;
-  getCompletion: Function;
-  setGeneratorType: Function;
-  generatorType: string;
-}
-
-export default function CreatorVideoOptionsForm({
-  videoId,
-  promptValue,
-  uploadStatus,
-  getCompletion,
-  setGeneratorType,
-  generatorType,
-}: ICreatorVideoOptionsForm) {
+export default function CreatorVideoOptionsForm() {
   const [generationStatus, setGenerationStatus] = useState<StatusToButtonEnum>(
     StatusToButtonEnum.DISABLED
   );
+
+  const {
+    actions: { setCompletion, setPrompt, setGeneratorType },
+    state: { completion, video, generatorType, prompt, uploadStatus },
+  } = creatorVideoStore();
 
   let temperature = 0.5;
 
@@ -45,14 +36,15 @@ export default function CreatorVideoOptionsForm({
       setGenerationStatus(StatusToButtonEnum.LOADING);
       event.preventDefault();
 
-      const result = await api.post("/ai/content", {
-        videoId,
+      const aiContentResult = await startTask("/ai/content", {
+        videoId: video.id,
         temperature,
         generatorType,
-        promptValue: promptValue + " {transcription}",
+        promptValue: prompt + " {transcription}",
       });
 
-      getCompletion(result.data);
+      setCompletion(aiContentResult.completion);
+
       setGenerationStatus(StatusToButtonEnum.DONE);
 
       Notification(NotificationTypeEnum.success, "Content Generated!");
@@ -131,7 +123,7 @@ export default function CreatorVideoOptionsForm({
           className="w-full"
           disabled={
             uploadStatus !== StatusToButtonEnum.DONE ||
-            (generatorType == "customize" && !promptValue)
+            (generatorType == "customize" && !prompt)
           }
         >
           {generationStatus !== StatusToButtonEnum.LOADING ? (

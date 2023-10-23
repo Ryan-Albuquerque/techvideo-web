@@ -1,10 +1,11 @@
 import { ApiStatus } from "@/utils/enum/ApiStatis";
 import { api } from "./api";
-const delay = 1000 * 10; //10s
+const delay = 1000 * 15; //15s
 
 const watchTask = async (id: string) => {
   let response, error;
-  while (true) {
+  let counter = 0;
+  while (counter <= 4) {
     try {
       const statusResponse = await api.get(`/task-status/${id}`);
       const status = statusResponse.data.task.status;
@@ -19,6 +20,7 @@ const watchTask = async (id: string) => {
 
       // Delay
       await new Promise((resolve) => setTimeout(resolve, delay));
+      counter++;
     } catch (e) {
       error = e;
     }

@@ -1,21 +1,21 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import Icons from "../Icons";
-import { api } from "@/lib/api";
 import { ChangeEvent, FormEvent, useState } from "react";
 import ffmpegResource from "@/utils/resources/FFmpegResource";
 import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum";
 import { NotificationTypeEnum } from "@/utils/enum/NotificationTypeEnum";
 import Notification from "@/utils/notification";
 import { startTask } from "@/lib/taskProcess";
-import { videoStore } from "@/store/video-store";
+import { creatorVideoStore } from "@/store/video-store";
 
 export default function CreatorVideoUploadForm() {
   const {
     actions: { setVideo, setTranscription, setUploadStatus, setVideoFile },
     state: { video, frontFile, uploadStatus },
-  } = videoStore();
+  } = creatorVideoStore();
 
   const [transcriptionPromptTextArea, setTranscriptionPromptTextArea] =
     useState<string>();
