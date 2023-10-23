@@ -21,7 +21,6 @@ interface VideoState {
 interface VideoActions {
   setVideo: (data: VideoData) => void;
   removeVideo: () => void;
-  setTranscription: (transcription: string) => void;
   setCompletion: (completion: string) => void;
   setGeneratorType: (generatorType: string) => void;
   setPrompt: (prompt: string) => void;
@@ -54,14 +53,7 @@ export const creatorVideoStore = create<creatorVideoStore>((set) => ({
       set((state) => ({
         state: {
           ...state.state,
-          video: {},
-        },
-      })),
-    setTranscription: (transcription) =>
-      set((state) => ({
-        state: {
-          ...state.state,
-          video: { ...state.state.video, transcription },
+          video: null,
         },
       })),
     setCompletion: (completion) =>

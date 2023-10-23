@@ -13,7 +13,7 @@ import { creatorVideoStore } from "@/store/video-store";
 
 export default function CreatorVideoUploadForm() {
   const {
-    actions: { setVideo, setTranscription, setUploadStatus, setVideoFile },
+    actions: { setVideo, setUploadStatus, setVideoFile },
     state: { video, frontFile, uploadStatus },
   } = creatorVideoStore();
 
