@@ -13,7 +13,7 @@ interface VideoData {
 interface VideoState {
   video: VideoData | {};
   frontFile: string | null;
-  uploadStatus: StatusToButtonEnum | null;
+  uploadStatus: StatusToButtonEnum;
 }
 
 interface VideoActions {
