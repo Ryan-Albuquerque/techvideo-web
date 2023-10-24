@@ -6,8 +6,8 @@ import CreatorVideoOptionsForm from "@/components/common/CreatorVideoOptionsForm
 export default function YoutubeResourceCreator() {
   return (
     <>
-      <main className="flex-1 flex min-h-screen max-sm:flex-col">
-        <aside className="w-1/3 max-lg:w-2/5 max-sm:w-full max-sm:px-2 flex flex-col space-y-8 p-5">
+      <main className="flex flex-1 min-h-screen max-sm:flex-col">
+        <aside className="flex flex-col w-1/3 p-5 space-y-8 max-lg:w-2/5 max-sm:w-full max-sm:px-2">
           <CreatorVideoUploadForm />
           <Separator />
           <CreatorVideoOptionsForm />

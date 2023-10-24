@@ -23,7 +23,7 @@ export default function CreatorVideoPromptSection() {
   return (
     <>
       <section className="flex flex-col flex-1 gap-4">
-        <div className="flex flex-col gap-4 p-5 flex-1 max-md:p-1 max-md:pt-5 max-sm:mb-5">
+        <div className="flex flex-col flex-1 gap-4 p-5 max-md:p-1 max-md:pt-5 max-sm:mb-5">
           <Textarea
             placeholder={
               "Add Prompt command." +

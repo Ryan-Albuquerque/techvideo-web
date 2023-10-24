@@ -94,10 +94,10 @@ export default function GenerateByVideo() {
 
   return (
     <>
-      <main className="flex-1 flex min-h-screen max-sm:flex-col">
-        <div className="flex flex-col flex-1 gap-4 max-sm:flex-none space-y-8 p-5">
+      <main className="flex flex-1 min-h-screen max-sm:flex-col">
+        <div className="flex flex-col flex-1 gap-4 p-5 space-y-8 max-sm:flex-none">
           <form
-            className="flex flex-col gap-4 p-5 flex-1 max-md:p-1 max-md:pt-5"
+            className="flex flex-col flex-1 gap-4 p-5 max-md:p-1 max-md:pt-5"
             onSubmit={handleUploadVideo}
           >
             <Label>
@@ -106,7 +106,7 @@ export default function GenerateByVideo() {
             </Label>
             <Label
               htmlFor="video"
-              className="max-sm:aspect-square max-sm:h-1/6 border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/5 my-4 h-2/6"
+              className="flex flex-col items-center justify-center gap-2 my-4 text-sm border border-dashed rounded-md cursor-pointer max-sm:aspect-square max-sm:h-1/6 aspect-video text-muted-foreground hover:bg-primary/5 h-2/6"
             >
               {!videoFile ? (
                 <>
@@ -119,7 +119,7 @@ export default function GenerateByVideo() {
                 </>
               ) : (
                 <>
-                  <video src={videoFile} className="aspect-video h-full" />
+                  <video src={videoFile} className="h-full aspect-video" />
                 </>
               )}
             </Label>
@@ -131,16 +131,16 @@ export default function GenerateByVideo() {
               onChange={handleFileSelected}
             />
 
-            <div className="space-y-2 mb-4">
+            <div className="mb-4 space-y-2">
               <Label className="max-md:text-xs">Criative Temperature</Label>
               <Slider
                 min={0}
                 max={1}
                 step={0.1}
                 defaultValue={[temperature]}
-                onValueChange={(value) => (temperature = value[0])}
+                onValueChange={(value: number[]) => (temperature = value[0])}
               />
-              <span className="block text-xs text-muted-foreground italic leading-relaxed">
+              <span className="block text-xs italic leading-relaxed text-muted-foreground">
                 High values can apper some errors
               </span>
             </div>
@@ -206,8 +206,8 @@ export default function GenerateByVideo() {
             <Separator />
           </form>
         </div>
-        <div className="w-7/12 max-lg:w-1/2 max-sm:w-full max-sm:px-2 flex flex-col space-y-8 p-5 max-sm:pt-1">
-          <div className="flex flex-col gap-4 p-5 flex-1 max-md:p-4 max-md:pt-5">
+        <div className="flex flex-col w-7/12 p-5 space-y-8 max-lg:w-1/2 max-sm:w-full max-sm:px-2 max-sm:pt-1">
+          <div className="flex flex-col flex-1 gap-4 p-5 max-md:p-4 max-md:pt-5">
             <Textarea
               placeholder="Result"
               className="resize-none h-3/4 leading-relaxed max-md:text-xs min-h-[300px]"

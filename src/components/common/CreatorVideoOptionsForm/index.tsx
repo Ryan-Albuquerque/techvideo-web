@@ -61,7 +61,7 @@ export default function CreatorVideoOptionsForm() {
   return (
     <>
       <form
-        className="space-y-8 w-full max-md:space-y-4"
+        className="w-full space-y-8 max-md:space-y-4"
         onSubmit={handleSubmit}
       >
         <Label htmlFor="type" className="max-md:text-xs">
@@ -110,7 +110,7 @@ export default function CreatorVideoOptionsForm() {
             defaultValue={[temperature]}
             onValueChange={(value: number[]) => (temperature = value[0])}
           />
-          <span className="block text-xs text-muted-foreground italic leading-relaxed">
+          <span className="block text-xs italic leading-relaxed text-muted-foreground">
             High values can apper some errors
           </span>
         </div>
