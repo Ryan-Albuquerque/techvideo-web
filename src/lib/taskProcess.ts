@@ -1,8 +1,8 @@
 import { ApiStatus } from "@/utils/enum/ApiStatus";
 import { api } from "./api";
 
-const delay15s = 1000 * 15; //15s
-const delay5s = 1000 * 5; //15s
+const delay20s = 1000 * 20; //20s
+const delay10s = 1000 * 10; //10s
 
 const watchTask = async (
   id: string
@@ -10,9 +10,11 @@ const watchTask = async (
   let response, error;
   let counter = 0;
 
-  await new Promise((resolve) => setTimeout(resolve, delay5s));
+  await new Promise((resolve) => setTimeout(resolve, delay10s));
 
-  while (counter <= 5) {
+  const maxAttempt = 6;
+
+  while (counter <= maxAttempt) {
     try {
       const statusResponse = await api.get(`/task-status/${id}`);
       const status = statusResponse.data.task.status;
@@ -26,7 +28,7 @@ const watchTask = async (
       }
 
       // Delay
-      await new Promise((resolve) => setTimeout(resolve, delay15s));
+      await new Promise((resolve) => setTimeout(resolve, delay20s));
       counter++;
     } catch (e) {
       error = e;
@@ -34,9 +36,10 @@ const watchTask = async (
     }
   }
 
-  if (counter > 5)
+  if (counter > maxAttempt)
     error = {
-      message: "Max retry process exceeded; try again soon",
+      message:
+        "Result could not be created. Max retry process exceeded; try again soon",
     };
 
   return { response, error };
