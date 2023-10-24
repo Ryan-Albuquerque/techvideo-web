@@ -50,7 +50,7 @@ export const startTask = async (urlPath: string, body: object) => {
   );
 
   if (error) {
-    new Error(
+    throw new Error(
       error?.response?.data?.error || error?.message || "Error in process task"
     );
   }
