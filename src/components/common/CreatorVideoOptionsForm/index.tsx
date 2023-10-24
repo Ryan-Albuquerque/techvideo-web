@@ -20,13 +20,9 @@ import { creatorVideoStore } from "@/store/creatorVideoStore";
 import { startTask } from "@/lib/taskProcess";
 
 export default function CreatorVideoOptionsForm() {
-  const [generationStatus, setGenerationStatus] = useState<StatusToButtonEnum>(
-    StatusToButtonEnum.DISABLED
-  );
-
   const {
-    actions: { setCompletion, setGeneratorType },
-    state: { video, generatorType, prompt, uploadStatus },
+    actions: { setCompletion, setGeneratorType, setGenerationStatus },
+    state: { video, generatorType, prompt, uploadStatus, generationStatus },
   } = creatorVideoStore();
 
   let temperature = 0.5;

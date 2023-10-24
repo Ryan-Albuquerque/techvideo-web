@@ -1,12 +1,13 @@
 "use client";
 import { Textarea } from "@/components/ui/textarea";
 import { creatorVideoStore } from "@/store/creatorVideoStore";
+import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum";
 import { useEffect } from "react";
 
 export default function CreatorVideoPromptSection() {
   const {
     actions: { setPrompt },
-    state: { generatorType, completion },
+    state: { generatorType, completion, generationStatus, uploadStatus },
   } = creatorVideoStore();
 
   const handlePromptValue = (e: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -34,6 +35,10 @@ export default function CreatorVideoPromptSection() {
             className="resize-none h-1/2 leading-relaxed max-md:text-xs min-h-[300px]"
             onBlur={handlePromptValue}
             readOnly={generatorType !== "customize"}
+            disabled={
+              generationStatus == StatusToButtonEnum.LOADING ||
+              uploadStatus == StatusToButtonEnum.LOADING
+            }
           />
           <Textarea
             placeholder="Result"

@@ -69,6 +69,7 @@ export default function AskMe() {
               "\n" +
               "Egg.: What do I have to know about next.js?"
             }
+            disabled={status == StatusToButtonEnum.LOADING}
             className="resize-none h-1/2 leading-relaxed max-md:text-xs min-h-[300px]"
             onBlur={handlePromptValue}
           />
