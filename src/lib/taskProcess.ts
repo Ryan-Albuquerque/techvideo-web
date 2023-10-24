@@ -4,8 +4,8 @@ const delay = 1000 * 15; //15s
 
 const watchTask = async (id: string) => {
   let response, error;
-  let counter = 0;
-  while (counter <= 4) {
+  let flag = true;
+  while (flag) {
     try {
       const statusResponse = await api.get(`/task-status/${id}`);
       const status = statusResponse.data.task.status;
@@ -20,9 +20,9 @@ const watchTask = async (id: string) => {
 
       // Delay
       await new Promise((resolve) => setTimeout(resolve, delay));
-      counter++;
     } catch (e) {
       error = e;
+      flag = false;
     }
   }
 

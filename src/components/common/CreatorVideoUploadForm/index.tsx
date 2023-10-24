@@ -8,13 +8,13 @@ import ffmpegResource from "@/lib/ffmpeg";
 import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum";
 import { NotificationTypeEnum } from "@/utils/enum/NotificationTypeEnum";
 import Notification from "@/utils/notification";
-import { creatorVideoStore } from "@/store/videoStore";
+import { creatorVideoStore } from "@/store/creatorVideoStore";
 import { startTask } from "@/lib/taskProcess";
 
 export default function CreatorVideoUploadForm() {
   const {
     actions: { setVideo, setUploadStatus, setVideoFile },
-    state: { video, frontFile, uploadStatus },
+    state: { frontFile, uploadStatus },
   } = creatorVideoStore();
 
   const [transcriptionPromptTextArea, setTranscriptionPromptTextArea] =
@@ -83,13 +83,13 @@ export default function CreatorVideoUploadForm() {
   return (
     <>
       <form className="w-full space-y-6" onSubmit={handleUploadVideo}>
-        <p className="text-center mt-2 max-lg:text-sm max-md:mt-0 font-bold">
+        <p className="mt-2 font-bold text-center max-lg:text-sm max-md:mt-0">
           First of all upload your video to generate a transcription, after
           generate your AI content
         </p>
         <Label
           htmlFor="video"
-          className="max-sm:aspect-video border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/5 my-4"
+          className="flex flex-col items-center justify-center gap-2 my-4 text-sm border border-dashed rounded-md cursor-pointer max-sm:aspect-video aspect-video text-muted-foreground hover:bg-primary/5"
         >
           {!frontFile ? (
             <>
@@ -98,7 +98,7 @@ export default function CreatorVideoUploadForm() {
             </>
           ) : (
             <>
-              <video src={frontFile} className="aspect-video h-full" />
+              <video src={frontFile} className="h-full aspect-video" />
             </>
           )}
         </Label>

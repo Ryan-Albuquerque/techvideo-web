@@ -1,12 +1,12 @@
 "use client";
 import { Textarea } from "@/components/ui/textarea";
-import { creatorVideoStore } from "@/store/videoStore";
+import { creatorVideoStore } from "@/store/creatorVideoStore";
 import { useEffect } from "react";
 
 export default function CreatorVideoPromptSection() {
   const {
     actions: { setPrompt },
-    state: { generatorType, prompt },
+    state: { generatorType, completion },
   } = creatorVideoStore();
 
   const handlePromptValue = (e: React.FocusEvent<HTMLTextAreaElement>) => {
@@ -23,7 +23,7 @@ export default function CreatorVideoPromptSection() {
   return (
     <>
       <section className="flex flex-col flex-1 gap-4">
-        <div className="flex flex-col gap-4 p-5 flex-1 max-md:p-1 max-md:pt-5 max-sm:mb-5">
+        <div className="flex flex-col flex-1 gap-4 p-5 max-md:p-1 max-md:pt-5 max-sm:mb-5">
           <Textarea
             placeholder={
               "Add Prompt command." +
@@ -33,13 +33,13 @@ export default function CreatorVideoPromptSection() {
             id="prompt"
             className="resize-none h-1/2 leading-relaxed max-md:text-xs min-h-[300px]"
             onBlur={handlePromptValue}
-            readOnly={prompt !== "customize"}
+            readOnly={generatorType !== "customize"}
           />
           <Textarea
             placeholder="Result"
             readOnly
             className="resize-none h-1/2 leading-relaxed max-md:text-xs min-h-[300px]"
-            value={prompt || undefined}
+            value={completion}
           />
         </div>
       </section>
