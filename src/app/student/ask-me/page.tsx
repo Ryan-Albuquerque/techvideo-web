@@ -6,11 +6,11 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Textarea } from "@/components/ui/textarea";
-import { api } from "@/lib/api";
+import { startTask } from "@/lib/taskProcess";
 import { NotificationTypeEnum } from "@/utils/enum/NotificationTypeEnum";
 import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum";
 import Notification from "@/utils/notification";
-import { FormEvent, useState } from "react";
+import { FormEvent, Suspense, useState } from "react";
 
 export default function AskMe() {
   let temperature = 0.5;
@@ -29,15 +29,21 @@ export default function AskMe() {
   const handleSubmitPrompt = async (event: FormEvent<HTMLFormElement>) => {
     try {
       event.preventDefault();
+      setResult("");
 
       setStatus(StatusToButtonEnum.LOADING);
 
-      const { data } = await api.post(`/ask-me`, {
+      Notification(
+        NotificationTypeEnum.default,
+        "Generating your content, it can take a few seconds"
+      );
+
+      const askMeResponse = await startTask("/ask-me", {
         prompt: promptValue,
         temperature,
       });
 
-      setResult(data);
+      setResult(askMeResponse.completion);
 
       setStatus(StatusToButtonEnum.DONE);
       Notification(NotificationTypeEnum.success, "Result Generated!");

@@ -1,4 +1,3 @@
-"use client";
 import HubCard from "@/components/common/HubCard";
 
 export default function StudentHub() {

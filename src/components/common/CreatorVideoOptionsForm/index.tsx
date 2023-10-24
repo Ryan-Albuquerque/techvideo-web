@@ -16,7 +16,7 @@ import { Slider } from "@/components/ui/slider";
 import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum";
 import Notification from "@/utils/notification";
 import { NotificationTypeEnum } from "@/utils/enum/NotificationTypeEnum";
-import { creatorVideoStore } from "@/store/videoStore";
+import { creatorVideoStore } from "@/store/creatorVideoStore";
 import { startTask } from "@/lib/taskProcess";
 
 export default function CreatorVideoOptionsForm() {
@@ -33,8 +33,13 @@ export default function CreatorVideoOptionsForm() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     try {
-      setGenerationStatus(StatusToButtonEnum.LOADING);
       event.preventDefault();
+      setCompletion("");
+      setGenerationStatus(StatusToButtonEnum.LOADING);
+      Notification(
+        NotificationTypeEnum.default,
+        "Generating your content, it can take a few seconds"
+      );
 
       const aiContentResult = await startTask("/ai/content", {
         videoId: video?.id,
@@ -49,8 +54,6 @@ export default function CreatorVideoOptionsForm() {
 
       Notification(NotificationTypeEnum.success, "Content Generated!");
     } catch (error: any) {
-      console.log(error?.message);
-
       setGenerationStatus(StatusToButtonEnum.READ);
       Notification(
         NotificationTypeEnum.error,

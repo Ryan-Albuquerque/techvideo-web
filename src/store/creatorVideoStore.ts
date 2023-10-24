@@ -15,7 +15,7 @@ interface VideoState {
   uploadStatus: StatusToButtonEnum;
   generatorType: string;
   prompt: string | null;
-  completion: string | null;
+  completion: string;
 }
 
 interface VideoActions {
@@ -37,7 +37,7 @@ export const creatorVideoStore = create<creatorVideoStore>((set) => ({
     video: null,
     frontFile: null,
     uploadStatus: StatusToButtonEnum.DISABLED,
-    completion: null,
+    completion: "",
     generatorType: "video_description",
     prompt: null,
   },
@@ -60,7 +60,7 @@ export const creatorVideoStore = create<creatorVideoStore>((set) => ({
       set((state) => ({
         state: {
           ...state.state,
-          completion,
+          completion: completion,
         },
       })),
     setGeneratorType: (generatorType) =>

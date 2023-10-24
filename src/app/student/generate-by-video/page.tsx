@@ -14,16 +14,15 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Slider } from "@/components/ui/slider";
 import { Textarea } from "@/components/ui/textarea";
-import { api } from "@/lib/api";
 import { NotificationTypeEnum } from "@/utils/enum/NotificationTypeEnum";
 import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum";
 import Notification from "@/utils/notification";
 import ffmpegResource from "@/lib/ffmpeg";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { startTask } from "@/lib/taskProcess";
 
 export default function GenerateByVideo() {
   const [videoFile, setVideoFile] = useState<string>();
-  const [id, setId] = useState<string>();
   const [uploadStatus, setUploadStatus] = useState<StatusToButtonEnum>(
     StatusToButtonEnum.DISABLED
   );
@@ -50,7 +49,14 @@ export default function GenerateByVideo() {
     try {
       event.preventDefault();
 
+      setResult("");
+
       setUploadStatus(StatusToButtonEnum.LOADING);
+
+      Notification(
+        NotificationTypeEnum.default,
+        "Generating your content, it can take a few seconds"
+      );
 
       if (!videoFile) return;
 
@@ -60,25 +66,24 @@ export default function GenerateByVideo() {
 
       data.append("file", audioFile);
 
-      const response = await api.post("/video", data);
+      const uploadVideoResponse = await startTask("/upload-video", data);
 
-      const videoId = response.data.id;
+      const videoId = uploadVideoResponse.id;
 
-      setId(videoId);
-      const { data: transcriptionData } = await api.post(
+      const { transcription } = await startTask(
         `/video/${videoId}/transcription`,
         {}
       );
 
       if (generatorType == "video_transcription") {
-        setResult(transcriptionData?.transcription);
+        setResult(transcription);
       } else {
-        const result = await api.post("/ai/content", {
+        const { completion } = await startTask("/ai/content", {
           videoId,
           temperature,
           generatorType,
         });
-        setResult(result.data);
+        setResult(completion);
       }
 
       setUploadStatus(StatusToButtonEnum.DONE);

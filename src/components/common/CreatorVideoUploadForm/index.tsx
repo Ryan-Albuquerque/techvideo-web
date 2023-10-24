@@ -8,13 +8,13 @@ import ffmpegResource from "@/lib/ffmpeg";
 import { StatusToButtonEnum } from "@/utils/enum/StatusToButtonEnum";
 import { NotificationTypeEnum } from "@/utils/enum/NotificationTypeEnum";
 import Notification from "@/utils/notification";
-import { creatorVideoStore } from "@/store/videoStore";
+import { creatorVideoStore } from "@/store/creatorVideoStore";
 import { startTask } from "@/lib/taskProcess";
 
 export default function CreatorVideoUploadForm() {
   const {
     actions: { setVideo, setUploadStatus, setVideoFile },
-    state: { video, frontFile, uploadStatus },
+    state: { frontFile, uploadStatus },
   } = creatorVideoStore();
 
   const [transcriptionPromptTextArea, setTranscriptionPromptTextArea] =
