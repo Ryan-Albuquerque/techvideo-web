@@ -34,7 +34,7 @@ export default function CreatorVideoOptionsForm() {
       setGenerationStatus(StatusToButtonEnum.LOADING);
       Notification(
         NotificationTypeEnum.default,
-        "Generating your content, it can take a few seconds"
+        "Generating your content, take a water, could take a little time"
       );
 
       const aiContentResult = await startTask("/ai/content", {

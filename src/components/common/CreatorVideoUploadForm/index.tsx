@@ -38,7 +38,7 @@ export default function CreatorVideoUploadForm() {
 
       Notification(
         NotificationTypeEnum.default,
-        "Sending your video, it can take a few seconds"
+        "Sending your video, take a water, could take a little time"
       );
 
       setUploadStatus(StatusToButtonEnum.LOADING);
